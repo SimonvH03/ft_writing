@@ -6,23 +6,24 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 23:45:15 by simon             #+#    #+#             */
-/*   Updated: 2023/12/16 23:48:14 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/18 23:35:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "writing_libft.h"
 
 int	ft_strcat(char *dest, const char *src)
 {
-	const int	dlen = ft_strlen(dest);
-	const int	slen = ft_strlen(src);
 	int			i;
 
 	i = 0;
-	while (i < slen)
+	while (dest[i])
+		i++;
+	while (src[i])
 	{
-		dest[dlen + i] = src[i];
+		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (i);
 }

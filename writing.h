@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writing.h                                       :+:      :+:    :+:   */
+/*   writing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/17 18:37:08 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/18 21:29:11 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_WRITING_H
-# define FT_WRITING_H
+#ifndef WRITING_H
+# define WRITING_H
 # include "writing_libft/writing_libft.h"
-# include <stdarg.h>
+# include <stdlib.h>
 # include <unistd.h>
 
 char	*ft_writing(const char *str, int n);

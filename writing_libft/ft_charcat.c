@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cpy.c                                           :+:      :+:    :+:   */
+/*   ft_charcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 22:01:12 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/12/16 00:14:46 by simon            ###   ########.fr       */
+/*   Created: 2023/12/18 22:30:29 by simon             #+#    #+#             */
+/*   Updated: 2023/12/18 23:08:08 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_cpy(char *out, const char *add, int n)
+int	ft_charcat(char *dest, const int c)
 {
-	int	i;
+	int			i;
 
 	i = 0;
-	while (i < n)
-	{
-		out[i] = add[i];
+	while (dest[i])
 		i++;
-	}
-	return (n);
+	dest[i] = c;
+	i++;
+	dest[i] = '\0';
+	return (1);
 }

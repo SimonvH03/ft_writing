@@ -6,11 +6,11 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/17 18:42:26 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/18 23:39:53 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "writing.h"
 #define MARKSPEC "\033[35m\\"
 #define MARKZERO "\033[31m\\"
 #define MARKOUT "\033[2m"
@@ -26,7 +26,7 @@ int	ft_size_converted(const char *str, int n)
 	while (i < n)
 	{
 		if (str[i] == '\0')
-			size += ft_strlen(MARKZERO);
+			size += ft_strlen(MARKZERO) + 1;
 		else if (ft_isbackprint(str[i]))
 			size += ft_strlen(MARKSPEC) + 1;
 		else if (ft_isoctal(str[i]))
@@ -42,7 +42,7 @@ int	ft_mark_writing(char *dest, const int c)
 {
 	if (c == '\0')
 		return (ft_strcat(dest, MARKZERO));
-	if (!ft_isprint(c))
+	else if (!ft_isprint(c))
 		return (ft_strcat(dest, MARKSPEC));
 	else
 		return (ft_strcat(dest, MARKDOWN));
@@ -57,7 +57,7 @@ int	ft_convert_writing(char *dest, const int c)
 	ft_bzero(backprint, 2);
 	ft_bzero(octal, 4);
 	if (c == '\0')
-		ft_strcat(dest, "0");
+		ft_charcat(dest, '0');
 	if (ft_isbackprint(c))
 	{
 		backprint[0] = bpreference[c - 7];
@@ -65,7 +65,7 @@ int	ft_convert_writing(char *dest, const int c)
 		return (1);
 	}
 	else if (c == '\177')
-		ft_cpy(octal, "DEL", 3);
+		ft_strcat(octal, "DEL");
 	else if (!ft_isprint(c))
 	{
 		octal[0] = ((c >> 6) & 7) + '0';
@@ -79,27 +79,28 @@ int	ft_convert_writing(char *dest, const int c)
 int	ft_construct_writing(char *dest, const char *str, int n)
 {
 	const int	strlen = ft_strlen(str);
-	int			spec;
-	int			i;
 	int			fellows;
+	int			i;
 
 	i = 0;
-	while (n--)
+	while (i < n)
 	{
-		fellows = ft_lookahead(&str[i], n);
-		if (n == strlen)
-			dest += ft_strcat(dest, MARKOUT);
-		dest += ft_mark_writing(dest, str[i]);
+		fellows = ft_lookahead(&str[i], n - i);
+		if (i == strlen)
+			ft_strcat(dest, MARKOUT);
+		if (fellows > 1)
+			ft_mark_writing(dest, str[i]);
 		while (fellows--)
 		{
 			if (!ft_isprint(str[i]))
-				dest += ft_convert_writing(dest, str[i]);
-			dest += ft_cpy(dest, &str[i], 1);
+				ft_convert_writing(dest, str[i]);
+			else
+				ft_charcat(dest, str[i]);
 			i++;
 		}
 	}
+	printf("outstr adress:	%p\n", dest);
 	ft_strcat(dest, MARKDOWN);
-	ft_strcat(dest, "\0");
 	return (i);
 }
 
@@ -119,9 +120,8 @@ char	*ft_writing(const char *str, int n)
 	outstr = (char *)malloc(size + 1);
 	if (outstr == NULL)
 		return (NULL);
+	printf("outstr adress:	%p\n", outstr);
 	outstr[size] = '\0';
+	ft_construct_writing(outstr, str, n);
 	return (outstr);
 }
-
-	// if (size != ft_construct_writing(outstr, str, n))
-	// 	ft_putstr("warning: size diff");

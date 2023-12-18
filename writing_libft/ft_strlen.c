@@ -6,18 +6,16 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:59:12 by svan-hoo          #+#    #+#             */
-/*   Updated: 2023/11/23 19:30:05 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/18 21:34:33 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf_libft.h"
-
-int	ft_strlen(const char *c)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	while (c[i])
+	while (str[i])
 		i++;
 	return (i);
 }

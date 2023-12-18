@@ -6,11 +6,11 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/17 18:38:37 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/18 19:29:34 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "writing.h"
 #define MARKSPEC "\033[35m\\"
 #define MAKEZERO "\033[31m\\0"
 #define MARKOUT "\033[2m"

@@ -1,10 +1,10 @@
-NAME		=	libft.a
+NAME		=	writing_libft.a
 
 CFLAGS		=	-Wall -Werror -Wextra
 
 SRC			=	ft_bzero.c \
-				ft_cpy.c \
 				ft_isprint.c \
+				ft_charcat.c \
 				ft_strcat.c \
 				ft_strlen.c 
 
