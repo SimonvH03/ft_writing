@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 22:48:51 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 22:54:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,16 +120,4 @@ char	*ft_writing(const char *str, int n)
 	outstr[size] = '\0';
 	ft_construct_writing(outstr, str, n);
 	return (outstr);
-}
-
-int	main(void)
-{
-	const char	*str1 = "line\nline\nline";
-	char		*tmp;
-
-	tmp = ft_writing(str1, 30);
-	printf("\nft_writing:	%s\n", tmp);
-	printf("\ntmp adress:	%p\n", tmp);
-	free(tmp);
-	return (0);
 }
