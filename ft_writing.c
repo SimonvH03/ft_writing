@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_writing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 17:31:03 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:48:51 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,18 @@ int	ft_size_converted(const char *str, int n)
 	return (size);
 }
 
-int	ft_mark_writing(char *dest, const char c)
+int	ft_mark_writing(char *dest, const char *str, int i)
 {
-	if (c == '\0')
+	const int	strlen = ft_strlen(str);
+
+	if (str[i] == '\0')
 		return (ft_strcat(dest, MARKZERO));
-	else if (!ft_isprint(c))
+	else if (!ft_isprint(str[i]))
 		return (ft_strcat(dest, MARKSPEC));
-	else
+	else if (i < strlen)
 		return (ft_strcat(dest, MARKDOWN));
+	else
+		return (ft_strcat(dest, MARKOUT));
 }
 
 int	ft_convert_writing(char *dest, const char c)
@@ -55,7 +59,7 @@ int	ft_convert_writing(char *dest, const char c)
 	ft_bzero(octal, 4);
 	if (c == '\0')
 		ft_charcat(dest, '0');
-	if (ft_isbackprint(c))
+	else if (ft_isbackprint(c))
 	{
 		backprint[0] = bpreference[c - 7];
 		ft_strcat(dest, backprint);
@@ -75,16 +79,13 @@ int	ft_convert_writing(char *dest, const char c)
 
 int	ft_construct_writing(char *dest, const char *str, int n)
 {
-	const int	strlen = ft_strlen(str);
 	int			fellows;
 	int			i;
 
 	i = 0;
 	while (i < n)
 	{
-		if (i == strlen)
-			ft_strcat(dest, MARKOUT);
-		ft_mark_writing(dest, str[i]);
+		ft_mark_writing(dest, str, i);
 		fellows = ft_lookahead(&str[i], n - i);
 		while (fellows--)
 		{
@@ -95,7 +96,6 @@ int	ft_construct_writing(char *dest, const char *str, int n)
 			i++;
 		}
 	}
-	printf("outstr adress:	%p\n", dest);
 	ft_strcat(dest, MARKDOWN);
 	return (i);
 }
@@ -127,7 +127,7 @@ int	main(void)
 	const char	*str1 = "line\nline\nline";
 	char		*tmp;
 
-	tmp = ft_writing(str1, -1);
+	tmp = ft_writing(str1, 30);
 	printf("\nft_writing:	%s\n", tmp);
 	printf("\ntmp adress:	%p\n", tmp);
 	free(tmp);

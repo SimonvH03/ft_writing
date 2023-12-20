@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 17:36:27 by svan-hoo         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:47:49 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 char	*ft_writing(const char *str, int n);
 
 int		ft_size_converted(const char *str, int n);
-int		ft_mark_writing(char *dest, const char c);
+int		ft_mark_writing(char *dest, const char *str, int i);
 int		ft_convert_writing(char *dest, const char c);
 int		ft_construct_writing(char *dest, const char *str, int n);
 
