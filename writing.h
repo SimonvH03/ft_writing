@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   writing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 16:37:42 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:36:27 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 # include "writing_libft/writing_libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+
+# define MARKSPEC "\033[35m\\"
+# define MARKZERO "\033[31m\\"
+# define MARKOUT "\033[2m"
+# define MARKDOWN "\033[0m"
 
 char	*ft_writing(const char *str, int n);
 

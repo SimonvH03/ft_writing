@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_writing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: svan-hoo <svan-hoo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 16:36:26 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:35:22 by svan-hoo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "writing.h"
-#define MARKSPEC "\033[35m\\"
-#define MAKEZERO "\033[31m\\0"
-#define MARKOUT "\033[2m"
-#define MARKDOWN "\033[0m"
 
 int	ft_isbackprint(char c)
 {
