@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/18 23:39:53 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:38:32 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@ int	ft_size_converted(const char *str, int n)
 	while (i < n)
 	{
 		if (str[i] == '\0')
-			size += ft_strlen(MARKZERO) + 1;
+			size += ft_strlen(MARKZERO);
 		else if (ft_isbackprint(str[i]))
-			size += ft_strlen(MARKSPEC) + 1;
+			size += ft_strlen(MARKSPEC);
 		else if (ft_isoctal(str[i]))
-			size += ft_strlen(MARKSPEC) + 3;
+			size += ft_strlen(MARKSPEC);
 		else
-			size += ft_strlen(MARKDOWN) + 1;
-		i += ft_lookahead(str, n - i);
+			size += ft_strlen(MARKDOWN);
+		size += ft_lookahead(&str[i], n - i);
+		i += ft_lookahead(&str[i], n - i);
 	}
 	return (size);
 }
 
-int	ft_mark_writing(char *dest, const int c)
+int	ft_mark_writing(char *dest, const char c)
 {
 	if (c == '\0')
 		return (ft_strcat(dest, MARKZERO));
@@ -48,7 +49,7 @@ int	ft_mark_writing(char *dest, const int c)
 		return (ft_strcat(dest, MARKDOWN));
 }
 
-int	ft_convert_writing(char *dest, const int c)
+int	ft_convert_writing(char *dest, const char c)
 {
 	const char	*bpreference = "abtnvfr";
 	char		backprint[2];
@@ -85,11 +86,10 @@ int	ft_construct_writing(char *dest, const char *str, int n)
 	i = 0;
 	while (i < n)
 	{
-		fellows = ft_lookahead(&str[i], n - i);
 		if (i == strlen)
 			ft_strcat(dest, MARKOUT);
-		if (fellows > 1)
-			ft_mark_writing(dest, str[i]);
+		ft_mark_writing(dest, str[i]);
+		fellows = ft_lookahead(&str[i], n - i);
 		while (fellows--)
 		{
 			if (!ft_isprint(str[i]))
@@ -124,4 +124,16 @@ char	*ft_writing(const char *str, int n)
 	outstr[size] = '\0';
 	ft_construct_writing(outstr, str, n);
 	return (outstr);
+}
+
+int	main(void)
+{
+	const char	*str1 = "line\nline\nline";
+	char		*tmp;
+
+	tmp = ft_writing(str1, -1);
+	printf("\nft_writing:	%s\n", tmp);
+	printf("\ntmp adress:	%p\n", tmp);
+	free(tmp);
+	return (0);
 }

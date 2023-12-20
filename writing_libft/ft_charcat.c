@@ -6,11 +6,11 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 22:30:29 by simon             #+#    #+#             */
-/*   Updated: 2023/12/18 23:08:08 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:36:35 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_charcat(char *dest, const int c)
+int	ft_charcat(char *dest, const char c)
 {
 	int			i;
 

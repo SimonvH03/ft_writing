@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/18 19:29:34 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:36:26 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 #define MARKOUT "\033[2m"
 #define MARKDOWN "\033[0m"
 
-int	ft_isbackprint(int c)
+int	ft_isbackprint(char c)
 {
 	return (c >= '\a' && c <= '\r');
 }
 
-int	ft_isoctal(int c)
+int	ft_isoctal(char c)
 {
-	return (ft_isprint(c) && !ft_isbackprint(c));
+	return (!ft_isprint(c) && !ft_isbackprint(c));
 }
 
 int	ft_lookahead(const char *str, int n)

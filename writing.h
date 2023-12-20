@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/18 21:29:11 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/20 16:37:42 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 char	*ft_writing(const char *str, int n);
 
 int		ft_size_converted(const char *str, int n);
-int		ft_mark_writing(char *dest, const int c);
-int		ft_convert_writing(char *dest, const int c);
+int		ft_mark_writing(char *dest, const char c);
+int		ft_convert_writing(char *dest, const char c);
 int		ft_construct_writing(char *dest, const char *str, int n);
 
-int		ft_isbackprint(int c);
-int		ft_isoctal(int c);
+int		ft_isbackprint(char c);
+int		ft_isoctal(char c);
 int		ft_lookahead(const char *str, int n);
 
 #endif
