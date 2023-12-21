@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 22:47:49 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 15:13:25 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define MARKSPEC "\033[35m\\"
-# define MARKZERO "\033[31m\\"
-# define MARKOUT "\033[2m"
+# define MARKSPEC "\033[35m"
+# define MARKZERO "\033[0;31m"
+# define MARKOUT "\033[0;2m"
 # define MARKDOWN "\033[0m"
 
 char	*ft_writing(const char *str, int n);

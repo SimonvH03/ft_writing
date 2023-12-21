@@ -6,33 +6,39 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/20 23:17:27 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 15:32:08 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "writing.h"
 
-int	ft_size_converted(const char *str, int n)
+int	ft_convert_writing(char *dest, const char c)
 {
-	int	size;
-	int	i;
+	const char	*bp_reference = "abtnvfr";
+	char		backprint[2];
+	char		octal[4];
 
-	size = 0;
-	i = 0;
-	while (i < n)
+	ft_bzero(backprint, 2);
+	ft_bzero(octal, 4);
+	ft_charcat(dest, '\\');
+	if (c == '\0')
+		ft_charcat(dest, '0');
+	else if (ft_isbackprint(c))
 	{
-		if (str[i] == '\0')
-			size += ft_strlen(MARKZERO);
-		else if (ft_isbackprint(str[i]))
-			size += ft_strlen(MARKSPEC);
-		else if (ft_isoctal(str[i]))
-			size += ft_strlen(MARKSPEC);
-		else
-			size += ft_strlen(MARKDOWN);
-		size += ft_lookahead(&str[i], n - i);
-		i += ft_lookahead(&str[i], n - i);
+		backprint[0] = bp_reference[c - '\a'];
+		ft_strcat(dest, backprint);
+		return (1);
 	}
-	return (size);
+	else if (c == '\177')
+		ft_strcat(octal, "DEL");
+	else if (ft_isoctal(c))
+	{
+		octal[0] = ((c >> 6) & 7) + '0';
+		octal[1] = ((c >> 3) & 7) + '0';
+		octal[2] = ((c >> 0) & 7) + '0';
+	}
+	ft_strcat(dest, octal);
+	return (1);
 }
 
 int	ft_mark_writing(char *dest, const char *str, int i)
@@ -47,34 +53,6 @@ int	ft_mark_writing(char *dest, const char *str, int i)
 		return (ft_strcat(dest, MARKDOWN));
 	else
 		return (ft_strcat(dest, MARKOUT));
-}
-
-int	ft_convert_writing(char *dest, const char c)
-{
-	const char	*bpreference = "abtnvfr";
-	char		backprint[2];
-	char		octal[4];
-
-	ft_bzero(backprint, 2);
-	ft_bzero(octal, 4);
-	if (c == '\0')
-		ft_charcat(dest, '0');
-	else if (ft_isbackprint(c))
-	{
-		backprint[0] = bpreference[c - 7];
-		ft_strcat(dest, backprint);
-		return (1);
-	}
-	else if (c == '\177')
-		ft_strcat(octal, "DEL");
-	else if (!ft_isprint(c))
-	{
-		octal[0] = ((c >> 6) & 7) + '0';
-		octal[1] = ((c >> 3) & 7) + '0';
-		octal[2] = ((c >> 0) & 7) + '0';
-	}
-	ft_strcat(dest, octal);
-	return (1);
 }
 
 int	ft_construct_writing(char *dest, const char *str, int n)
@@ -113,7 +91,7 @@ char	*ft_writing(const char *str, int n)
 	size = ft_size_converted(str, n) + ft_strlen(MARKDOWN);
 	if (n > strlen + 1)
 		size += ft_strlen (MARKOUT);
-	outstr = (char *)malloc(size + 1);
+	outstr = (char *)malloc((size + 1) * sizeof(char));
 	if (outstr == NULL)
 		return (NULL);
 	outstr[size] = '\0';
@@ -123,11 +101,11 @@ char	*ft_writing(const char *str, int n)
 
 int	main(void)
 {
-	const char	*str1 = "line\177line\033line\nline";
+	const char	*str1 = "\n\n";
 	char		*tmp;
 
-	tmp = ft_writing(str1, 43);
-	printf("\nft_writing:	%s\n", tmp);
+	tmp = ft_writing(str1, 0);
+	printf("\nft_writing:	%s\n\n", tmp);
 	free(tmp);
 	return (0);
 }
