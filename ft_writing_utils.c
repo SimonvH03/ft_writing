@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/21 15:32:13 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 22:35:52 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ int	ft_size_converted(const char *str, int n)
 			size += ft_strlen(MARKSPEC);
 		else if (ft_isoctal(str[i]))
 			size += ft_strlen(MARKSPEC);
-		else
+		else if (ft_isprint(str[i]))
 			size += ft_strlen(MARKDOWN);
+		else
+			break ;
 		size += ft_lookahead(&str[i], n - i);
 		i += ft_lookahead(&str[i], n - i);
 	}

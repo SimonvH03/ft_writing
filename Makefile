@@ -1,5 +1,7 @@
 NAME		=	writing.a
 
+CC			=	cc
+
 CFLAGS		=	-Wall -Werror -Wextra
 
 SRC			=	ft_writing.c \

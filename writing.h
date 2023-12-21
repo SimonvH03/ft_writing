@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/21 15:13:25 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 22:40:58 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # define MARKSPEC "\033[35m"
-# define MARKZERO "\033[0;31m"
+# define MARKZERO "\033[31m"
 # define MARKOUT "\033[0;2m"
 # define MARKDOWN "\033[0m"
 
