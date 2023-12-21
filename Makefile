@@ -15,7 +15,6 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJ)
 	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJ)
-	make -C $(LIBFDIR) fclean
 
 $(LIBFT):
 	make -C $(LIBFDIR) all
