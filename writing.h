@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:28:45 by simon             #+#    #+#             */
-/*   Updated: 2023/12/21 22:40:58 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 23:22:09 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 # define MARKSPEC "\033[35m"
 # define MARKZERO "\033[31m"
-# define MARKOUT "\033[0;2m"
-# define MARKDOWN "\033[0m"
+# define MARKDIM "\033[2m"
+# define MARKTEXT "\033[37m"
 
 char	*ft_writing(const char *str, int n);
 
 int		ft_size_converted(const char *str, int n);
-int		ft_mark_writing(char *dest, const char *str, int i);
+int		ft_mark_writing(char *dest, const char c);
 int		ft_convert_writing(char *dest, const char c);
 int		ft_construct_writing(char *dest, const char *str, int n);
 

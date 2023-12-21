@@ -6,7 +6,7 @@
 /*   By: simon <simon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:57:06 by simon             #+#    #+#             */
-/*   Updated: 2023/12/21 22:34:00 by simon            ###   ########.fr       */
+/*   Updated: 2023/12/21 23:21:09 by simon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,28 @@ int	ft_convert_writing(char *dest, const char c)
 	return (1);
 }
 
-int	ft_mark_writing(char *dest, const char *str, int i)
+int	ft_mark_writing(char *dest, const char c)
 {
-	const int	strlen = ft_strlen(str);
-
-	if (str[i] == '\0')
+	if (c == '\0')
 		return (ft_strcat(dest, MARKZERO));
-	else if (!ft_isprint(str[i]))
+	else if (!ft_isprint(c))
 		return (ft_strcat(dest, MARKSPEC));
-	else if (i < strlen)
-		return (ft_strcat(dest, MARKDOWN));
 	else
-		return (ft_strcat(dest, MARKOUT));
+		return (ft_strcat(dest, MARKDIM));
 }
 
 int	ft_construct_writing(char *dest, const char *str, int n)
 {
+	const int	strlen = ft_strlen(str);
 	int			fellows;
 	int			i;
 
 	i = 0;
 	while (i < n)
 	{
-		ft_mark_writing(dest, str, i);
+		if (i == strlen)
+			ft_strcat(dest, MARKDIM);
+		ft_mark_writing(dest, str[i]);
 		fellows = ft_lookahead(&str[i], n - i);
 		while (fellows--)
 		{
@@ -74,7 +73,7 @@ int	ft_construct_writing(char *dest, const char *str, int n)
 			i++;
 		}
 	}
-	ft_strcat(dest, MARKDOWN);
+	ft_strcat(dest, MARKTEXT);
 	return (i);
 }
 
@@ -88,13 +87,30 @@ char	*ft_writing(const char *str, int n)
 		n = strlen;
 	else if (n == -1)
 		n = strlen + 1;
-	size = ft_size_converted(str, n) + ft_strlen(MARKDOWN);
+	size = ft_size_converted(str, n) + ft_strlen(MARKTEXT);
 	if (n > strlen + 1)
-		size += ft_strlen (MARKOUT);
-	outstr = (char *)malloc((size + 1) * sizeof(char));
+		size += ft_strlen (MARKDIM);
+	outstr = (char *)malloc((size + 100) * sizeof(char));
 	if (outstr == NULL)
 		return (NULL);
-	outstr[size] = '\0';
+	ft_bzero(outstr, size);
 	ft_construct_writing(outstr, str, n);
 	return (outstr);
+}
+
+int	main(void)
+{
+	const char	*str1 = "0\1771\1772\177\0\1774\1775\1776\177";
+	char		*tmp;
+	int			i;
+
+	i = 0;
+	while (i < 16)
+	{
+		tmp = ft_writing(str1, i);
+		printf("\nft_writing(%d):	%s\n\n", i, tmp);
+		free(tmp);
+		i++;
+	}
+	return (0);
 }
